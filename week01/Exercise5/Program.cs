@@ -1,42 +1,45 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 class Program
 {
     static void Main()
     {
-        List<double> numbers = new List<double>();
-        Console.WriteLine("Enter a list of numbers, type 0 when finished.");
+        DisplayWelcome();
 
-        while (true)
-        {
-            Console.Write("Enter number: ");
-            if (double.TryParse(Console.ReadLine(), out double num))
-            {
-                if (num == 0)
-                    break;
-                numbers.Add(num);
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please enter a valid number.");
-            }
-        }
+        string userName = PromptUserName();
+        int userNumber = PromptUserNumber();
 
-        if (numbers.Count > 0)
-        {
-            double total = numbers.Sum();
-            double average = numbers.Average();
-            double maximum = numbers.Max();
+        int squaredNumber = SquareNumber(userNumber);
 
-            Console.WriteLine($"The sum is: {total}");
-            Console.WriteLine($"The average is: {average}");
-            Console.WriteLine($"The largest number is: {maximum}");
-        }
-        else
-        {
-            Console.WriteLine("No numbers were entered.");
-        }
+        DisplayResult(userName, squaredNumber);
+    }
+
+    static void DisplayWelcome()
+    {
+        Console.WriteLine("Welcome to the program!");
+    }
+
+    static string PromptUserName()
+    {
+        Console.Write("Please enter your name: ");
+        string name = Console.ReadLine();
+        return name;
+    }
+
+    static int PromptUserNumber()
+    {
+        Console.Write("Please enter your favorite number: ");
+        int number = int.Parse(Console.ReadLine());
+        return number;
+    }
+
+    static int SquareNumber(int number)
+    {
+        return number * number;
+    }
+
+    static void DisplayResult(string name, int square)
+    {
+        Console.WriteLine($"{name}, the square of your number is {square}");
     }
 }
